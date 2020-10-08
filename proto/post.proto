@@ -1,5 +1,5 @@
 syntax = "proto3";
-package niconico.blog;
+package blog;
 
 import "timestamp.proto";
 

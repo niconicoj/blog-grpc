@@ -74,8 +74,7 @@ pub mod post_service_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path =
-                http::uri::PathAndQuery::from_static("/niconico.blog.PostService/CreatePost");
+            let path = http::uri::PathAndQuery::from_static("/blog.PostService/CreatePost");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -136,7 +135,7 @@ pub mod post_service_server {
         fn call(&mut self, req: http::Request<B>) -> Self::Future {
             let inner = self.inner.clone();
             match req.uri().path() {
-                "/niconico.blog.PostService/CreatePost" => {
+                "/blog.PostService/CreatePost" => {
                     #[allow(non_camel_case_types)]
                     struct CreatePostSvc<T: PostService>(pub Arc<T>);
                     impl<T: PostService> tonic::server::UnaryService<super::CreatePostRequest> for CreatePostSvc<T> {
@@ -194,6 +193,6 @@ pub mod post_service_server {
         }
     }
     impl<T: PostService> tonic::transport::NamedService for PostServiceServer<T> {
-        const NAME: &'static str = "niconico.blog.PostService";
+        const NAME: &'static str = "blog.PostService";
     }
 }

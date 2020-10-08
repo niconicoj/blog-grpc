@@ -1,5 +1,5 @@
 syntax = "proto3";
-package niconico.blog;
+package blog;
 
 message Timestamp {
   uint64 seconds = 1;
