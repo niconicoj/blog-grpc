@@ -1,0 +1,25 @@
+syntax = "proto3";
+package niconico.blog;
+
+import "timestamp.proto";
+
+service PostService {
+  rpc CreatePost(CreatePostRequest) returns (Post);
+}
+
+message CreatePostRequest {
+  Post post = 1;
+}
+
+message Post {
+  string title = 1;
+  string body = 2;
+  repeated Tag tags = 3;
+  Timestamp created_at = 4;
+  Timestamp updated_at = 5;
+}
+
+message Tag {
+  string name = 1;
+  string url = 2;
+}
