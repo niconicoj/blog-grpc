@@ -2,26 +2,68 @@ syntax = "proto3";
 package blog;
 
 import "timestamp.proto";
+import "empty.proto";
 
 service PostService {
   rpc CreatePost(CreatePostRequest) returns (Post);
+  rpc ReadPost(ReadPostRequest) returns (Post);
+  rpc UpdatePost(UpdatePostRequest) returns (Post);
+  rpc DeletePost(DeletePostRequest) returns (Empty);
+  rpc ListPost(ListPostRequest) returns (ListPostResponse);
 }
 
 message CreatePostRequest {
-  string title = 1;
-  string body = 2;
-  repeated Tag tags = 3;
+    Post post = 1;
+}
+
+message ReadPostRequest {
+    string name = 1;
+}
+
+message UpdatePostRequest {
+    Post post = 1;
+    PostMask mask = 2;
+}
+
+message DeletePostRequest {
+    string name = 1;
+}
+
+message ListPostRequest {
+    uint32 page_size = 1;
+    string page_token = 2;
+}
+
+message ListPostResponse {
+    repeated Post posts = 1;
+    repeated ListPage around = 2;
+    ListPage previous = 3;
+    ListPage next = 4;
+    ListPage first = 5;
+    ListPage last = 6;
+}
+
+message ListPage {
+    string page_token = 1;
+    uint32 page_number = 2;
+    bool current = 3;
+}
+
+message PostMask {
+    repeated string field = 1;
 }
 
 message Post {
-  string title = 1;
-  string body = 2;
-  repeated Tag tags = 3;
-  Timestamp created_at = 4;
-  Timestamp updated_at = 5;
+    string title = 1;
+    string body = 2;
+    repeated Tag tags = 3;
+    // Output only field
+    Timestamp created_at = 4;
+    // Output only field
+    Timestamp updated_at = 5;
 }
 
 message Tag {
-  string name = 1;
-  string url = 2;
+    string name = 1;
+    string url = 2;
 }
