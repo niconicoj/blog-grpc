@@ -7,8 +7,12 @@ pub struct Timestamp {
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePostRequest {
-    #[prost(message, optional, tag = "1")]
-    pub post: ::std::option::Option<Post>,
+    #[prost(string, tag = "1")]
+    pub title: std::string::String,
+    #[prost(string, tag = "2")]
+    pub body: std::string::String,
+    #[prost(message, repeated, tag = "3")]
+    pub tags: ::std::vec::Vec<Tag>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Post {

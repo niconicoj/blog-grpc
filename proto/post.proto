@@ -8,7 +8,9 @@ service PostService {
 }
 
 message CreatePostRequest {
-  Post post = 1;
+  string title = 1;
+  string body = 2;
+  repeated Tag tags = 3;
 }
 
 message Post {
