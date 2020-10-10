@@ -15,7 +15,7 @@ pub struct CreatePostRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadPostRequest {
     #[prost(string, tag = "1")]
-    pub name: std::string::String,
+    pub id: std::string::String,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdatePostRequest {
@@ -27,7 +27,7 @@ pub struct UpdatePostRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePostRequest {
     #[prost(string, tag = "1")]
-    pub name: std::string::String,
+    pub id: std::string::String,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListPostRequest {
@@ -67,24 +67,29 @@ pub struct PostMask {
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Post {
+    /// Output only field
     #[prost(string, tag = "1")]
-    pub title: std::string::String,
+    pub id: std::string::String,
     #[prost(string, tag = "2")]
+    pub title: std::string::String,
+    #[prost(string, tag = "3")]
     pub body: std::string::String,
-    #[prost(message, repeated, tag = "3")]
+    #[prost(message, repeated, tag = "4")]
     pub tags: ::std::vec::Vec<Tag>,
     /// Output only field
-    #[prost(message, optional, tag = "4")]
+    #[prost(message, optional, tag = "5")]
     pub created_at: ::std::option::Option<Timestamp>,
     /// Output only field
-    #[prost(message, optional, tag = "5")]
+    #[prost(message, optional, tag = "6")]
     pub updated_at: ::std::option::Option<Timestamp>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Tag {
     #[prost(string, tag = "1")]
-    pub name: std::string::String,
+    pub id: std::string::String,
     #[prost(string, tag = "2")]
+    pub name: std::string::String,
+    #[prost(string, tag = "3")]
     pub url: std::string::String,
 }
 #[doc = r" Generated client implementations."]

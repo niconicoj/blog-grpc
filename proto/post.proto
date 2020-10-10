@@ -17,7 +17,7 @@ message CreatePostRequest {
 }
 
 message ReadPostRequest {
-    string name = 1;
+    string id = 1;
 }
 
 message UpdatePostRequest {
@@ -26,7 +26,7 @@ message UpdatePostRequest {
 }
 
 message DeletePostRequest {
-    string name = 1;
+    string id = 1;
 }
 
 message ListPostRequest {
@@ -54,16 +54,19 @@ message PostMask {
 }
 
 message Post {
-    string title = 1;
-    string body = 2;
-    repeated Tag tags = 3;
     // Output only field
-    Timestamp created_at = 4;
+    string id = 1;
+    string title = 2;
+    string body = 3;
+    repeated Tag tags = 4;
     // Output only field
-    Timestamp updated_at = 5;
+    Timestamp created_at = 5;
+    // Output only field
+    Timestamp updated_at = 6;
 }
 
 message Tag {
-    string name = 1;
-    string url = 2;
+    string id = 1;
+    string name = 2;
+    string url = 3;
 }
