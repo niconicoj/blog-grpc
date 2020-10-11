@@ -12,17 +12,19 @@ service PostService {
   rpc ListPost(ListPostRequest) returns (ListPostResponse);
 }
 
+// request for creating a new post.
+// fields title and body are required.
 message CreatePostRequest {
     Post post = 1;
 }
 
+// request for reading a single post.
 message ReadPostRequest {
     string id = 1;
 }
 
 message UpdatePostRequest {
     Post post = 1;
-    PostMask mask = 2;
 }
 
 message DeletePostRequest {
@@ -36,21 +38,17 @@ message ListPostRequest {
 
 message ListPostResponse {
     repeated Post posts = 1;
-    repeated ListPage around = 2;
-    ListPage previous = 3;
-    ListPage next = 4;
-    ListPage first = 5;
-    ListPage last = 6;
+    repeated Page around = 2;
+    Page previous = 3;
+    Page next = 4;
+    Page first = 5;
+    Page last = 6;
 }
 
-message ListPage {
+message Page {
     string page_token = 1;
     uint32 page_number = 2;
     bool current = 3;
-}
-
-message PostMask {
-    repeated string field = 1;
 }
 
 message Post {
@@ -68,5 +66,4 @@ message Post {
 message Tag {
     string id = 1;
     string name = 2;
-    string url = 3;
 }

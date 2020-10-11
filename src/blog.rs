@@ -7,11 +7,14 @@ pub struct Timestamp {
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Empty {}
+/// request for creating a new post.
+/// fields title and body are required.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct CreatePostRequest {
     #[prost(message, optional, tag = "1")]
     pub post: ::std::option::Option<Post>,
 }
+/// request for reading a single post.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ReadPostRequest {
     #[prost(string, tag = "1")]
@@ -21,8 +24,6 @@ pub struct ReadPostRequest {
 pub struct UpdatePostRequest {
     #[prost(message, optional, tag = "1")]
     pub post: ::std::option::Option<Post>,
-    #[prost(message, optional, tag = "2")]
-    pub mask: ::std::option::Option<PostMask>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeletePostRequest {
@@ -41,29 +42,24 @@ pub struct ListPostResponse {
     #[prost(message, repeated, tag = "1")]
     pub posts: ::std::vec::Vec<Post>,
     #[prost(message, repeated, tag = "2")]
-    pub around: ::std::vec::Vec<ListPage>,
+    pub around: ::std::vec::Vec<Page>,
     #[prost(message, optional, tag = "3")]
-    pub previous: ::std::option::Option<ListPage>,
+    pub previous: ::std::option::Option<Page>,
     #[prost(message, optional, tag = "4")]
-    pub next: ::std::option::Option<ListPage>,
+    pub next: ::std::option::Option<Page>,
     #[prost(message, optional, tag = "5")]
-    pub first: ::std::option::Option<ListPage>,
+    pub first: ::std::option::Option<Page>,
     #[prost(message, optional, tag = "6")]
-    pub last: ::std::option::Option<ListPage>,
+    pub last: ::std::option::Option<Page>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ListPage {
+pub struct Page {
     #[prost(string, tag = "1")]
     pub page_token: std::string::String,
     #[prost(uint32, tag = "2")]
     pub page_number: u32,
     #[prost(bool, tag = "3")]
     pub current: bool,
-}
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct PostMask {
-    #[prost(string, repeated, tag = "1")]
-    pub field: ::std::vec::Vec<std::string::String>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Post {
@@ -89,8 +85,6 @@ pub struct Tag {
     pub id: std::string::String,
     #[prost(string, tag = "2")]
     pub name: std::string::String,
-    #[prost(string, tag = "3")]
-    pub url: std::string::String,
 }
 #[doc = r" Generated client implementations."]
 pub mod post_service_client {
