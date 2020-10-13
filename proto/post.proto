@@ -38,17 +38,7 @@ message ListPostRequest {
 
 message ListPostResponse {
     repeated Post posts = 1;
-    repeated Page around = 2;
-    Page previous = 3;
-    Page next = 4;
-    Page first = 5;
-    Page last = 6;
-}
-
-message Page {
-    string page_token = 1;
-    uint32 page_number = 2;
-    bool current = 3;
+    string next_page_token = 2;
 }
 
 message Post {

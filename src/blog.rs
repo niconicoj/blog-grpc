@@ -41,25 +41,8 @@ pub struct ListPostRequest {
 pub struct ListPostResponse {
     #[prost(message, repeated, tag = "1")]
     pub posts: ::std::vec::Vec<Post>,
-    #[prost(message, repeated, tag = "2")]
-    pub around: ::std::vec::Vec<Page>,
-    #[prost(message, optional, tag = "3")]
-    pub previous: ::std::option::Option<Page>,
-    #[prost(message, optional, tag = "4")]
-    pub next: ::std::option::Option<Page>,
-    #[prost(message, optional, tag = "5")]
-    pub first: ::std::option::Option<Page>,
-    #[prost(message, optional, tag = "6")]
-    pub last: ::std::option::Option<Page>,
-}
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Page {
-    #[prost(string, tag = "1")]
-    pub page_token: std::string::String,
-    #[prost(uint32, tag = "2")]
-    pub page_number: u32,
-    #[prost(bool, tag = "3")]
-    pub current: bool,
+    #[prost(string, tag = "2")]
+    pub next_page_token: std::string::String,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Post {
